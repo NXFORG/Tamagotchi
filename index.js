@@ -42,32 +42,11 @@ class playTamagotchi {
         })
     }
 
-//     nextQuestion(){
-//         console.log(`\nWelcome back, ${this.user.name}`);
-//         ui.question('What is your favourite colour?\n', input => {
-//             try {
-//                 if(input === this.user.faveColour){
-//                     console.log('Excellent, you may proceed...');
-//                     this.showTopSecretInfo();
-//                 } else {
-//                     throw new SHIELDError(`${this.user.name}'s favourite colour would never be ${input}! Get outta here!`);
-//                 } 
-//             } catch (err) {
-//                 err.shout() // custom error method
-//                 this.errorAndClose(err)
-//             };
-//         })
-//     };
-
 //     errorAndClose(err){
 //         console.log('\n', err.message, '\n'); // Experiment with err, err.name, err.message, err.stack
 //         ui.close();
 //     }
     
-//     showTopSecretInfo(){
-//         console.log("\nVisit https://marvelcinematicuniverse.fandom.com/wiki/Marvel_Cinematic_Universe_Wiki for the Top Secret Info\n");
-//         ui.close();
-//     };
  }
 
  let newGame = new playTamagotchi;
