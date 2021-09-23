@@ -87,7 +87,7 @@ class playTamagotchi {
             if (input === 'y') {
                 this.successClose();
             } else if (input === 'n') {
-                console.log(`Yay!!! lets have more fun ${userPet.name}!!!`);
+                console.log(`Yay!!! lets have more fun with ${userPet.name}!!!`);
                 this.optionSelect();
             } else {
                 console.log('Please type either (y/n)')
