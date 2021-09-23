@@ -4,29 +4,24 @@ const ui = require('readline').createInterface({
 });
 
 class Pet {
-    constructor(name){
+    constructor(name) {
         this.name = name;
         this.hungerLevel = 0;
         this.happinessLevel = 100;
     }
 }
 
-class Cat extends Pet {
-    meow() {
-        return "Meow";
-    }
-}
 
 let userPet;
 
 class playTamagotchi {
 
-    run(){
+    run() {
         console.clear()
         this.nameQuestion();
     }
 
-    nameQuestion(){
+    nameQuestion() {
         ui.question('\nWhat is the name of your pet?\n', input => {
             userPet = new Pet(input);
             console.log(`New pet: ${userPet.name} created.`);
@@ -34,10 +29,11 @@ class playTamagotchi {
         })
     }
 
-    playQuestion(){
+
+    playQuestion() {
         ui.question(`\nDo you want to play with ${userPet.name}? (Y/N)\n`, input => {
-            if(input === "Y"){
-                if(userPet.hungerLevel <100){
+            if (input === "Y") {
+                if (userPet.hungerLevel < 100) {
                     console.log(`${userPet.name} is playing...`);
                     userPet.hungerLevel += 50;
                     console.log(`${userPet.name}'s hunger level is now ${userPet.hungerLevel}%`);
@@ -47,7 +43,7 @@ class playTamagotchi {
                     this.optionSelect();
                 }
             } else {
-                if(userPet.happinessLevel <20){
+                if (userPet.happinessLevel < 20) {
                     console.log(`GAME OVER - ${userPet.name} has run away.`);
                     ui.close();
                 } else {
@@ -60,10 +56,10 @@ class playTamagotchi {
         })
     }
 
-    feedQuestion(){
+    feedQuestion() {
         ui.question(`\nDo you want to feed ${userPet.name}? (Y/N)\n`, input => {
-            if(input === "Y"){
-                if(userPet.hungerLevel >= 50){
+            if (input === "Y") {
+                if (userPet.hungerLevel >= 50) {
                     console.log(`${userPet.name} is eating...`);
                     userPet.hungerLevel -= 50;
                     console.log(`${userPet.name}'s hunger level is now ${userPet.hungerLevel}%`);
@@ -73,7 +69,7 @@ class playTamagotchi {
                     this.optionSelect();
                 }
             } else {
-                if(userPet.hungerLevel >= 100){
+                if (userPet.hungerLevel >= 100) {
                     console.log(`GAME OVER - ${userPet.name} has run away.`);
                     ui.close();
                 } else {
@@ -86,17 +82,31 @@ class playTamagotchi {
         })
     }
 
-    optionSelect(){
+    areYouSureQuestion() {
+        ui.question("\nAre you sure you don't want to play some more? (y/n)\n", input => {
+            if (input === 'y') {
+                this.successClose();
+            } else if (input === 'n') {
+                console.log(`Yay!!! lets have more fun with ${userPet.name}!!!`);
+                this.optionSelect();
+            } else {
+                console.log('Please type either (y/n)')
+                this.areYouSureQuestion();
+            }
+        })
+    }
+
+    optionSelect() {
         ui.question(`\nWhere do you want to go next? (Kitchen/Lounge/Exit)\n`, input => {
-            switch(input){
-                case "Kitchen": 
+            switch (input) {
+                case "Kitchen":
                     this.feedQuestion();
                     break;
                 case "Lounge":
                     this.playQuestion();
                     break;
                 case "Exit":
-                    this.successClose();
+                    this.areYouSureQuestion();
                     break;
                 default:
                     console.log('Input not recognised, please try again.')
@@ -105,18 +115,19 @@ class playTamagotchi {
         })
     }
 
-    successClose(){
+
+    successClose() {
         console.log('Thanks for playing');
         ui.close();
     }
 
-//     errorAndClose(err){
-//         console.log('\n', err.message, '\n'); // Experiment with err, err.name, err.message, err.stack
-//         ui.close();
-//     }
-    
- }
+    //     errorAndClose(err){
+    //         console.log('\n', err.message, '\n'); // Experiment with err, err.name, err.message, err.stack
+    //         ui.close();
+    //     }
 
- let newGame = new playTamagotchi;
+}
 
- newGame.run();
+let newGame = new playTamagotchi;
+
+newGame.run();
