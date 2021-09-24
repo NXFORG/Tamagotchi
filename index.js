@@ -34,6 +34,8 @@ class playTamagotchi {
         })
     }
 
+    //insert function to determine pet type here
+
     playQuestion(){
         ui.question(`\nDo you want to play with ${userPet.name}? (Y/N)\n`, input => {
             if(input === "Y"){
